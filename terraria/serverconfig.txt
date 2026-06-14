@@ -1,0 +1,10 @@
+world=/opt/terraria/worlds/VLVT.wld
+worldname=VLVT
+port=7777
+maxplayers=8
+password=
+motd=Bienvenue sur VLVT !
+language=fr-FR
+priority=1
+npcstream=60
+noupnp=1
