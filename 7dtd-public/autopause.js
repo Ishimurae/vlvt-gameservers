@@ -8,7 +8,7 @@ const PM2_NAME       = '7DaysToDie';
 const TELNET_PORT    = 26060;
 const TELNET_PASS    = 'eY4gLv94';
 const CHECK_INTERVAL = 30 * 1000;
-const EMPTY_GRACE    = 5 * 60 * 1000;
+const EMPTY_GRACE    = 20 * 60 * 1000;
 const START_GRACE    = 3 * 60 * 1000;
 const START_WAIT     = 120 * 1000;
 const START_COOLDOWN = 10 * 60 * 1000;
@@ -60,7 +60,7 @@ function startServer() {
 }
 
 function stopServer() {
-  console.log('[autopause] Arrêt ' + PM2_NAME + ' (vide depuis 5 min)');
+  console.log('[autopause] Arrêt ' + PM2_NAME + ' (vide depuis 20 min)');
   try { execSync('pm2 stop ' + PM2_NAME); } catch(e) { console.error('[autopause] Erreur pm2 stop:', e.message); }
   startTime  = null;
   emptyStart = null;

@@ -8,7 +8,7 @@ const net = require('net');
 
 const PORT           = 7777;
 const CHECK_INTERVAL = 30 * 1000;
-const EMPTY_GRACE    = 5 * 60 * 1000;
+const EMPTY_GRACE    = 20 * 60 * 1000;
 const START_GRACE    = 3 * 60 * 1000;
 const START_WAIT     = 90 * 1000;
 const START_COOLDOWN = 10 * 60 * 1000;
@@ -70,7 +70,7 @@ function startServer() {
 }
 
 function stopServer() {
-  console.log('[autopause] Arrêt serveur Terraria (vide depuis 5 min)');
+  console.log('[autopause] Arrêt serveur Terraria (vide depuis 20 min)');
   try { execSync('pm2 stop terraria'); } catch(e) { console.error('[autopause] Erreur pm2:', e.message); }
   startTime  = null;
   emptyStart = null;

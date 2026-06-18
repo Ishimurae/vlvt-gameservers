@@ -177,8 +177,15 @@ async function tick() {
     return;
   }
 
-  const count = await countPlayers();
-  if (count === -1) { console.log('[autopause] RCON indisponible — réessai dans 30s'); return; }
+  let count = await countPlayers();
+  if (count === -1) {
+    // Fallback : connexions TCP établies sur le port jeu
+    try {
+      const raw = execSync("ss -tn 'sport = :16261' 2>/dev/null | grep -c ESTAB || echo 0", { encoding:'utf8', shell:'/bin/bash' }).trim();
+      count = parseInt(raw, 10) || 0;
+    } catch { count = 0; }
+    console.log('[autopause] RCON indisponible — fallback TCP : ' + count + ' connexion(s)');
+  }
   console.log('[autopause] Joueurs: ' + count);
 
   if (count === 0) {
